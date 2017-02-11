@@ -4,12 +4,15 @@ services:
   mysql:
     image: hypriot/rpi-mysql
     container_name: mysql-main
+    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD
     volumes:
       - ./mysql/runtime:/var/lib/mysql
     networks:
-      - proxy-network 
+      - proxy-network
+    labels:
+      - "traefik.enable=false"
 
 # Support for reverse proxy - Common network interface for all containers
 networks:
